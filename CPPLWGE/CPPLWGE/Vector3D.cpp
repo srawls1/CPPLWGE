@@ -20,9 +20,13 @@ Vector3D Vector3D::unitVector()
 
 f32 Vector3D::magnitude()
 {
-	// Math functions are not implemented yet
-	//return Math::sqrt(x * x + y * y + z * z);
+	return Math::sqrt(magnitudeSquared());
 	return 1.f;
+}
+
+f32 Vector3D::magnitudeSquared()
+{
+	return x * x + y * y + z * z;
 }
 
 f32 Vector3D::projectOntoMagnitude(Vector3D other)
@@ -38,6 +42,11 @@ Vector3D Vector3D::projectOnto(Vector3D other)
 Vector3D Vector3D::othogonalProjectionOnto(Vector3D other)
 {
 	return *this - projectOnto(other);
+}
+
+Vector3D Vector3D::reflectedAcross(Vector3D normal)
+{
+	return 2.f * projectOnto(normal) - *this;
 }
 
 void Vector3D::operator+=(Vector3D v)
@@ -105,6 +114,11 @@ f32 Vector3D::distance(Vector3D v1, Vector3D v2)
 	return vectorSubtract(v1, v2).magnitude();
 }
 
+f32 Vector3D::distanceSquared(Vector3D v1, Vector3D v2)
+{
+	return vectorSubtract(v1, v2).magnitudeSquared();
+}
+
 f32 Vector3D::cosAngleBetween(Vector3D v1, Vector3D v2)
 {
 	return dotProduct(v1, v2) / (v1.magnitude() * v2.magnitude());
@@ -112,9 +126,55 @@ f32 Vector3D::cosAngleBetween(Vector3D v1, Vector3D v2)
 
 f32 Vector3D::angleBetween(Vector3D v1, Vector3D v2)
 {
-	//return Math::arccos(cosAngleBetween(v1, v2));
+	return Math::arccos(cosAngleBetween(v1, v2));
 	return 1.f;
 }
+
+Vector3D Vector3D::lerp(Vector3D v1, Vector3D v2, f32 alpha)
+{
+	return v1 * (1 - alpha) + v2 * alpha;
+}
+
+Vector3D Vector3D::slerp(Vector3D v1, Vector3D v2, f32 alpha)
+{
+	f32 angle = angleBetween(v1, v2);
+	f32 sina = Math::sin(angle);
+	return Math::sin((1 - alpha) * angle) / sina * v1 + Math::sin(alpha * angle) / sina * v2;
+}
+
+Vector3D Vector3D::moveTowards(Vector3D from, Vector3D to, f32 maxStep)
+{
+	Vector3D dif = to - from;
+	if (dif.magnitude() < maxStep)
+	{
+		return to;
+	}
+	return from + dif.unitVector() * maxStep;
+}
+
+Vector3D Vector3D::rotateTowards(Vector3D from, Vector3D to, f32 maxRotateStep, f32 maxMagnitudeStep)
+{
+	f32 fromMagnitude = from.magnitude();
+	f32 toMagnitude = to.magnitude();
+	f32 magDif = toMagnitude - fromMagnitude;
+	f32 retMag = Math::abs(magDif) < maxMagnitudeStep ? fromMagnitude + maxMagnitudeStep : toMagnitude;
+	
+	from.normalize();
+	to.normalize();
+	f32 angle = dotProduct(from, to);
+	f32 alpha = Math::min(1.f, angle / maxRotateStep);
+	return retMag * slerp(from, to, alpha);
+}
+
+
+Vector3D Vector3D::zero(0.f, 0.f, 0.f);
+Vector3D Vector3D::right(1.f, 0.f, 0.f);
+Vector3D Vector3D::left(-1.f, 0.f, 0.f);
+Vector3D Vector3D::up(0.f, 1.f, 0.f);
+Vector3D Vector3D::down(0.f, -1.f, 0.f);
+Vector3D Vector3D::forward(0.f, 0.f, -1.f);
+Vector3D Vector3D::backward(0.f, 0.f, 1.f);
+
 
 Vector3D operator+(Vector3D v1, Vector3D v2)
 {
@@ -152,3 +212,4 @@ bool operator==(Vector3D v1, Vector3D v2)
 		&& v1.y == v2.y
 		&& v1.z == v2.z;
 }
+
