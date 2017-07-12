@@ -9,6 +9,9 @@ struct Vector3D
 
 	Vector3D(f32 xx = 0.f, f32 yy = 0.f, f32 zz = 0.f);
 
+	struct Vector2D xy();
+	struct Vector2D xz();
+
 	inline void normalize();
 	inline Vector3D unitVector();
 	inline f32 magnitude();

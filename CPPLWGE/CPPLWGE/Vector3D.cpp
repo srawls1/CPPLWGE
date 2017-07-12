@@ -1,9 +1,20 @@
 #include "Vector3D.h"
+#include "Vector2D.h"
 
 
 Vector3D::Vector3D(f32 xx = 0.f, f32 yy = 0.f, f32 zz = 0.f)
 	: x(xx), y(yy), z(zz)
 {}
+
+Vector2D Vector3D::xy()
+{
+	return Vector2D(x, y);
+}
+
+Vector2D Vector3D::xz()
+{
+	return Vector2D(x, z);
+}
 
 void Vector3D::normalize()
 {

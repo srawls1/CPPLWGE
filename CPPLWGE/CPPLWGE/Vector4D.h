@@ -10,6 +10,10 @@ struct Vector4D
 
 	Vector4D(f32 xx = 0.f, f32 yy = 0.f, f32 zz = 0.f, f32 ww = 0.f);
 
+	struct Vector3D xyz();
+	struct Vector2D xy();
+	struct Vector2D zw();
+
 	inline void normalize();
 	inline Vector4D unitVector();
 	inline f32 magnitude();
