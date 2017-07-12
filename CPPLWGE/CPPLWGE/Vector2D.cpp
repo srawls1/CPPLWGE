@@ -27,24 +27,25 @@ f32 Vector2D::magnitudeSquared()
 	return x * x + y * y;
 }
 
-f32 Vector2D::projectOntoMagnitude(Vector2D other)
+f32 Vector2D::scalarProjection(Vector2D other)
 {
 	return Vector2D::dotProduct(*this, other) / other.magnitude();
 }
 
-Vector2D Vector2D::projectOnto(Vector2D other)
+Vector2D Vector2D::vectorProjection(Vector2D other)
 {
-	return projectOntoMagnitude(other) * other.unitVector();
+	return scalarProjection(other) * other.unitVector();
 }
 
-Vector2D Vector2D::orthogonalProjectionOnto(Vector2D other)
+Vector2D Vector2D::orthogonalProjection(Vector2D other)
 {
-	return *this - projectOnto(other);
+	return *this - vectorProjection(other);
 }
 
 Vector2D Vector2D::reflectedAcross(Vector2D normal)
 {
-	return 2 * projectOnto(normal) - *this;
+	Vector2D projection = vectorProjection(normal);
+	return projection + projection - *this;
 }
 
 void Vector2D::operator+=(Vector2D v)
@@ -101,7 +102,7 @@ f32 Vector2D::crossProductScalar(Vector2D v1, Vector2D v2)
 	return v1.x * v2.y - v1.y * v2.x;
 }
 
-Vector2D crossProductVector(Vector2D v)
+Vector2D Vector2D::crossProductVector(Vector2D v)
 {
 	return Vector2D(v.y, -v.x);
 }

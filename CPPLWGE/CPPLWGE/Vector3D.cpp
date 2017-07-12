@@ -21,7 +21,6 @@ Vector3D Vector3D::unitVector()
 f32 Vector3D::magnitude()
 {
 	return Math::sqrt(magnitudeSquared());
-	return 1.f;
 }
 
 f32 Vector3D::magnitudeSquared()
@@ -29,24 +28,25 @@ f32 Vector3D::magnitudeSquared()
 	return x * x + y * y + z * z;
 }
 
-f32 Vector3D::projectOntoMagnitude(Vector3D other)
+f32 Vector3D::scalarProjection(Vector3D other)
 {
 	return dotProduct(*this, other) / other.magnitude();
 }
 
-Vector3D Vector3D::projectOnto(Vector3D other)
+Vector3D Vector3D::vectorProjection(Vector3D other)
 {
-	return projectOntoMagnitude(other) * other.unitVector();
+	return scalarProjection(other) * other.unitVector();
 }
 
-Vector3D Vector3D::othogonalProjectionOnto(Vector3D other)
+Vector3D Vector3D::orthogonalProjection(Vector3D other)
 {
-	return *this - projectOnto(other);
+	return *this - vectorProjection(other);
 }
 
 Vector3D Vector3D::reflectedAcross(Vector3D normal)
 {
-	return 2.f * projectOnto(normal) - *this;
+	Vector3D projection = vectorProjection(normal);
+	return projection + projection - *this;
 }
 
 void Vector3D::operator+=(Vector3D v)
@@ -127,7 +127,6 @@ f32 Vector3D::cosAngleBetween(Vector3D v1, Vector3D v2)
 f32 Vector3D::angleBetween(Vector3D v1, Vector3D v2)
 {
 	return Math::arccos(cosAngleBetween(v1, v2));
-	return 1.f;
 }
 
 Vector3D Vector3D::lerp(Vector3D v1, Vector3D v2, f32 alpha)

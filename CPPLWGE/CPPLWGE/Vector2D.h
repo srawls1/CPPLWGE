@@ -13,9 +13,9 @@ struct Vector2D
 	inline f32 magnitude();
 	inline f32 magnitudeSquared();
 
-	inline f32 projectOntoMagnitude(Vector2D other);
-	inline Vector2D projectOnto(Vector2D other);
-	inline Vector2D orthogonalProjectionOnto(Vector2D other);
+	inline f32 scalarProjection(Vector2D other);
+	inline Vector2D vectorProjection(Vector2D other);
+	inline Vector2D orthogonalProjection(Vector2D other);
 	inline Vector2D reflectedAcross(Vector2D normal);
 
 	inline void operator+=(Vector2D v);

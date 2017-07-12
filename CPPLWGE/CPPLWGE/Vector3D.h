@@ -14,9 +14,9 @@ struct Vector3D
 	inline f32 magnitude();
 	inline f32 magnitudeSquared();
 
-	inline f32 projectOntoMagnitude(Vector3D other);
-	inline Vector3D projectOnto(Vector3D other);
-	inline Vector3D othogonalProjectionOnto(Vector3D other);
+	inline f32 scalarProjection(Vector3D other);
+	inline Vector3D vectorProjection(Vector3D other);
+	inline Vector3D orthogonalProjection(Vector3D other);
 	inline Vector3D reflectedAcross(Vector3D normal);
 
 	inline void operator+=(Vector3D v2);
