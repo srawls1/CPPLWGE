@@ -28,7 +28,8 @@ struct Vector2D
 	static inline Vector2D scalarMultiply(f32 scalar, Vector2D v);
 	static inline f32 dotProduct(Vector2D v1, Vector2D v2);
 	static inline Vector2D scale(Vector2D v1, Vector2D v2);
-	static inline f32 crossProduct(Vector2D v1, Vector2D v2);
+	static inline f32 crossProductScalar(Vector2D v1, Vector2D v2);
+	static inline Vector2D crossProductVector(Vector2D v);
 	static inline f32 distance(Vector2D v1, Vector2D v2);
 	static inline f32 distanceSquared(Vector2D v1, Vector2D v2);
 	static inline f32 cosAngleBetween(Vector2D v1, Vector2D v2);

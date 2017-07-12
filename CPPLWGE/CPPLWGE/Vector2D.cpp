@@ -96,9 +96,14 @@ Vector2D Vector2D::scale(Vector2D v1, Vector2D v2)
 	return Vector2D(v1.x * v2.x, v1.y * v2.y);
 }
 
-f32 Vector2D::crossProduct(Vector2D v1, Vector2D v2)
+f32 Vector2D::crossProductScalar(Vector2D v1, Vector2D v2)
 {
 	return v1.x * v2.y - v1.y * v2.x;
+}
+
+Vector2D crossProductVector(Vector2D v)
+{
+	return Vector2D(v.y, -v.x);
 }
 
 f32 Vector2D::distance(Vector2D v1, Vector2D v2)
