@@ -163,6 +163,12 @@ Vector2D Vector2D::rotateTowards(Vector2D from, Vector2D to, f32 maxRotateStep, 
 	return retMag * slerp(from, to, alpha);
 }
 
+bool Vector2D::approximatelyEqual(Vector2D v1, Vector2D v2)
+{
+	return Math::approximatelyEqual(v1.x, v2.x)
+		&& Math::approximatelyEqual(v1.y, v2.y);
+}
+
 Vector2D Vector2D::zero(0.f, 0.f);
 Vector2D Vector2D::right(1.f, 0.f);
 Vector2D Vector2D::left(-1.f, 0.f);

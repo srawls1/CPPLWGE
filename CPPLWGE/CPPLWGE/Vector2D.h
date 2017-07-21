@@ -40,6 +40,8 @@ struct Vector2D
 	static inline Vector2D moveTowards(Vector2D from, Vector2D to, f32 maxStep);
 	static inline Vector2D rotateTowards(Vector2D from, Vector2D to, f32 maxRotateStep, f32 maxMagnitudeStep);
 
+	static inline bool approximatelyEqual(Vector2D v1, Vector2D v2);
+
 	static Vector2D zero;
 	static Vector2D right;
 	static Vector2D left;

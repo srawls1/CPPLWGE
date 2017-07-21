@@ -176,6 +176,13 @@ Vector3D Vector3D::rotateTowards(Vector3D from, Vector3D to, f32 maxRotateStep, 
 	return retMag * slerp(from, to, alpha);
 }
 
+bool Vector3D::approximatelyEqual(Vector3D v1, Vector3D v2)
+{
+	return Math::approximatelyEqual(v1.x, v2.x)
+		&& Math::approximatelyEqual(v1.y, v2.y)
+		&& Math::approximatelyEqual(v1.z, v2.z);
+}
+
 
 Vector3D Vector3D::zero(0.f, 0.f, 0.f);
 Vector3D Vector3D::right(1.f, 0.f, 0.f);

@@ -43,6 +43,8 @@ struct Vector4D
 	static inline Vector4D slerp(Vector4D v1, Vector4D v2, f32 alpha);
 	static inline Vector4D moveTowards(Vector4D from, Vector4D to, f32 maxStep);
 	static inline Vector4D rotateTowards(Vector4D from, Vector4D to, f32 maxRotateStep, f32 maxMagnitudeStep);
+
+	static inline bool approximatelyEqual(Vector4D v1, Vector4D v2);
 };
 
 inline Vector4D operator+(Vector4D v1, Vector4D v2);

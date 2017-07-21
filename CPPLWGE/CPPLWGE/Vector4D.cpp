@@ -180,6 +180,14 @@ Vector4D Vector4D::rotateTowards(Vector4D from, Vector4D to, f32 maxRotateStep, 
 	return retMag * slerp(from, to, alpha);
 }
 
+bool Vector4D::approximatelyEqual(Vector4D v1, Vector4D v2)
+{
+	return Math::approximatelyEqual(v1.x, v2.x)
+		&& Math::approximatelyEqual(v1.y, v2.y)
+		&& Math::approximatelyEqual(v1.z, v2.z)
+		&& Math::approximatelyEqual(v1.w, v2.w);
+}
+
 
 Vector4D operator+(Vector4D v1, Vector4D v2)
 {

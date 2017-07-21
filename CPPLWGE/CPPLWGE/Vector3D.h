@@ -43,6 +43,8 @@ struct Vector3D
 	static inline Vector3D moveTowards(Vector3D from, Vector3D to, f32 maxStep);
 	static inline Vector3D rotateTowards(Vector3D from, Vector3D to, f32 maxRotateStep, f32 maxMagnitudeStep);
 
+	static inline bool approximatelyEqual(Vector3D v1, Vector3D v2);
+	
 	static Vector3D zero;
 	static Vector3D right;
 	static Vector3D left;
