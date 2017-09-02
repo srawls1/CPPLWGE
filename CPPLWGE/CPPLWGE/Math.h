@@ -13,6 +13,7 @@ namespace Math
 	T clamp(T val, T min, T max);
 
 	f32 sin(f32 theta);
+	f64 sin(f64 theta)
 	f32 cos(f32 theta);
 	f32 tan(f32 theta);
 	f32 arcsin(f32 ratio);
@@ -70,3 +71,5 @@ namespace Math
 	f32 E;
 };
 
+
+#include "MathDefinitions.h"
