@@ -12,8 +12,11 @@ namespace Math
 	template <class T>
 	T clamp(T val, T min, T max);
 
+    template <class T>
+    T abs(T val);
+
 	f32 sin(f32 theta);
-	f64 sin(f64 theta)
+	f64 sin(f64 theta);
 	f32 cos(f32 theta);
 	f32 tan(f32 theta);
 	f32 arcsin(f32 ratio);
@@ -67,9 +70,75 @@ namespace Math
 	bool approximatelyEqual(T a, T b);
 
 
-	f32 PI;
-	f32 E;
+	extern f32 PI;
+	extern f32 E;
 };
 
+namespace Math
+{
+    template <class T>
+    T min(T a, T b)
+    {
+        return (a < b) ? a : b;
+    }
 
-#include "MathDefinitions.h"
+    template <class T>
+    T max(T a, T b)
+    {
+        return (a < b) ? b : a;
+    }
+
+    template <class T>
+    T clamp(T val, T min, T max)
+    {
+        return (val < min) ? min : ((val > max) ? max : val);
+    }
+
+    template <class T>
+    T abs(T val)
+    {
+        return (val >= 0) ? val : -val;
+    }
+
+    template <class T>
+    T gcd(T a, T b)
+    {
+        return 0;
+    }
+
+    template <class T>
+    T lcm(T a, T b)
+    {
+        return 0;
+    }
+
+    template <class T>
+    bool isPrime(T n)
+    {
+        return false;
+    }
+
+    template <class T>
+    T factor(T n)
+    {
+        return 0;
+    }
+
+    template <class T>
+    T mod(T n, T modulus)
+    {
+        return 0;
+    }
+
+    template <class T>
+    T inverseMod(T n, T modulus)
+    {
+        return 0;
+    }
+
+    template <class T>
+    bool approximatelyEqual(T a, T b)
+    {
+        return abs(a - b) < 0.0001;
+    }
+};
